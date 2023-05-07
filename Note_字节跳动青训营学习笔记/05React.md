@@ -128,3 +128,47 @@ export default Greeting;
 ----------------
 
   将UI拆分成多个独立的单元，这些单元组合可以构成多个视图展示。组件是React应用的基本构建块，用于封装UI元素和逻辑。组件可以是class组件或函数式组件，它们都可以使用props属性来接受数据和事件处理程序，以及使用state状态来管理内部状态。Hook贴近组件内运行的各种概念，用于在函数式组件中使用状态和其他特性，例如生命周期方法、访问DOM元素、订阅事件等
+
+# [ 前端与 React | 青训营笔记] 2.0
+
+> 为什么不能用windows对象？
+>
+> react hooks 给状态管理库的设计带来了哪些新思路？
+
+1. 不能使用 `window` 对象的原因是因为在服务器端渲染时，`window` 对象是不存在的，只有在浏览器环境下才有。因此，在 React 组件中使用 `window` 对象可能会导致代码在服务器端渲染时出错。
+2. React Hooks 引入了函数式组件中的状态管理，使得组件状态的管理更加简洁和灵活。同时，它也鼓励开发者将组件拆分为更小的、更易于管理的组件，从而提高代码的可读性和可维护性。此外，React Hooks 还提供了一些其他的钩子函数，如 `useEffect` 和 `useContext` 等，使得开发者能够更方便地处理组件的副作用和上下文信息。
+
+## 状态管理
+
+状态管理工具的本质：管理共享内存中的状态
+
+React Vue Angular 对比
+----------------------
+
+ Vue 和 Angular 双向数据绑定，计算属性等，数据是响应式的，控制视图刷新，拥有计算属性等，相比下Vue 和 Angular 使用状态管理的场景减少。
+ React 的状态管理工具通常更加灵活和扩展性更强
+
+ React Local State ：组件级别的局部状态
+
+```js
+import React, { useState } from 'react';
+
+function HelloWorld() {
+  const [message, setMessage] = useState('Hello, World!');
+
+  function handleClick() {
+    setMessage('Hello, React!');
+  }
+
+  return (
+    <div>
+      <h1>{message}</h1>
+      <button onClick={handleClick}>Change Message</button>
+    </div>
+  );
+}
+
+export default HelloWorld;
+```
+
+问题来了，React 的 数据流是自上向下的，大部份情况下Local State 就能满足
